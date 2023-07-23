@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>IA Module</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">IA Module</h1>
+</header>
+<h1 id="learning-outcomes">Learning Outcomes</h1>
+<ol type="1">
+<li>Identify and critically analyse agent-based systems, differentiating
+between architectures and approaches.</li>
+<li>Apply and critically evaluate intelligent agent techniques to
+real-world problems, particularly where technical risk and uncertainty
+is involved.</li>
+<li>Deploy critically appropriate software tools and skills for the
+design and implementation of an agent-based system, bearing in mind
+applicable legal, social, ethical, and professional issues.</li>
+<li>Systematically develop and implement the skills required to be
+effective member of a development team in a virtual professional
+environment, adopting real-life perspectives on team roles and
+organisation.</li>
+</ol>
+<h1 id="introduction-to-agent-based-computing">Introduction to
+Agent-Based Computing</h1>
+<p>During week one of the course, we were introduced to the concept of
+agent-based computation. Prior to this, I had encountered the term
+“agent” when observing Alpha Start AI playing StarCraft 2 against human
+opponents. However, at that time, I did not delve into the reason behind
+machines being referred to as “agents.” Wooldridge (2009) shed light on
+this term, defining an agent as a computer system existing within an
+environment, capable of perceiving it and autonomously taking actions.
+Despite this seemingly straightforward explanation, the theory turned
+out to be more complex and nuanced. It brought forth various questions,
+with “autonomy” being the primary but not the sole concept. Unlike a
+mere software program or daemon, which solely deals with inputs and
+outputs, an agent operates in a dynamic and volatile environment.
+Personally, this concept is new to me, yet it resonates well with my
+previous experience working with intricate distributed software systems.
+While my prior expertise was limited to traditional software approaches,
+I was pleasantly surprised to discover the widespread use of agent-based
+systems across multiple industries. Unfortunately, I was unable to
+participate in the initial collaborative discussion. Nonetheless, upon
+reviewing the posts later, I came across intriguing information about
+how diverse sectors embrace agent-based systems. For instance, I was
+fascinated to learn that researchers in biology employ “The Virtual
+Cell” systems to test hypotheses (vcell.org, 2023). However, when
+compared to conventional software solutions, agent-based systems are
+still in the developmental phase, with numerous research outweighing
+actual implemented solutions. The content covered in the first unit
+sparked numerous ideas regarding the implementation of agent-based
+solutions within the industry I currently work in.</p>
+<h1 id="first-order-logic">First Order Logic</h1>
+<p>During the second week of our studies, we looked into First Order
+Logic (FOL), which serves as a means of knowledge representation. In the
+context of computers, the structuring of knowledge becomes essential for
+comprehension. My initial exposure to this concept occurred many years
+ago during my graduation when I undertook a Prolog programming course.
+Consequently, the concepts explained by Russell &amp; Norvig (2021) felt
+quite familiar, harking back to my earlier learning experiences.
+However, despite this familiarity, I had never actively applied this
+knowledge, and initially, this unit appeared to be rather intricate.</p>
+<p>The seminar conducted during the week significantly contributed to my
+understanding of First Order Logic, clarifying its concepts and
+principles. As a software engineer, much of my work revolves around
+bridging human-understandable industry knowledge and processes with
+machine-readable code. Consequently, grasping the fundamentals of First
+Order Logic was relatively easy. Nonetheless, limited experience in
+declarative programming could present hurdles to understanding FOL. Most
+programming languages predominantly adopt an imperative approach to
+organising program flow. Consequently, I encountered some difficulties
+initially, but I soon realised that FOL can be pretty straightforward
+and practical for complex systems.</p>
+<h1 id="agent-architectures">Agent Architectures</h1>
+<p>During the third week, we explored agent architectures. I must admit
+that the reading list provided for this module wasn’t perfect. It needed
+to have the structure of solid academic sources I met in previous
+modules. Nonetheless, it did present several intriguing ideas, such as
+Artificial Neural Networks (ANN) and behavioural models, which were
+inspired by beards and other agent-related topics. Despite the
+unstructured nature of the information, I still found many valuable
+ideas that could be applied to my job. However, I noticed that the
+knowledge presented leaned more towards the technical aspects rather
+than theoretical insights. This may become a challenge for students who
+need a technical background in interpreting the provided sources. To
+improve the learning experience, inspecting the unit’s lecturecasts
+before looking into the reading list would be beneficial. This way,
+students can grasp the basic ideas that are later described in the
+provided articles. Overall, this unit offered a wealth of interesting
+information, which proved to be useful for our assignments. During
+inspecting the literature, a particular image of agent architecture
+appeared in our group discussion.</p>
+<h1 id="hybrid-agent-architectures">Hybrid Agent Architectures</h1>
+<p>During the fourth week, we delved into Hybrid agent architectures.
+This particular architecture combines both proactive and reactive
+approaches in the design of agents, making it potentially valuable for
+tackling complex problems. Each approach, whether reactive or proactive,
+has its own strengths and weaknesses, and its effectiveness depends on
+the specific task at hand. However, the hybrid architecture offers a
+more flexible and adaptable approach. I found Wooldridge’s (2009)
+theoretical explanations and practical implementations, such as
+“Stanley,” to be particularly insightful. The multi-layer approach, with
+its various directions of interactions, initially puzzled me, but I
+eventually grasped its significance. One aspect that still raises some
+doubts for me is the practical implementation of these architectures.
+Based on my commercial experience, I have come to believe that “good”
+solutions tend to be the simplest ones, which can be developed and
+maintained by less experienced developers, with a focus on resolving
+straightforward problems. This approach has proven useful throughout my
+decade of working with distributed systems, designing and managing them.
+I don’t oppose sophisticated solutions that can efficiently solve
+complex problems, especially in the realm of AI. However, in the modern
+world, with its vast computational resources and cloud technologies,
+there is a push towards designing solutions that are both simple,
+possibly ineffective and resource-intensive. ChatGPT itself is an
+example of such a resource-expensive solution. This could be an
+interesting topic for further discussion and exploration.</p>
+<h1 id="agent-communication">Agent Communication</h1>
+<p>In the fifth unit, we delved into the fascinating topic of agent
+communication and KQML. The lecturecast was easy to understand, but I
+found the provided literature, especially “Speech Acts: An Essay in the
+Philosophy of Language,” to be rather complex. It took me some time to
+get the basic ideas presented in it. However, the paper by Payne &amp;
+Tamma (2014) was easier to understand, likely due to its more practical
+approach.</p>
+<p>Throughout the unit, several interesting questions were raised. I was
+particularly captivated by the concept of ontology and knowledge-related
+exchange. In software development, we often use context containers to
+exchange knowledge about the environment, but they tend to offer limited
+information specific to the software’s working environment. I imagine
+ontology as a context based on knowledge, providing a more profound and
+knowledge-driven approach to communication. This could potentially
+enhance the flexibility of agent communication but at the cost of
+greater efforts required to describe and represent ontologies.</p>
+<p>Overall, this unit proved to be quite interesting yet complex,
+leaving me with more questions than answers. I found the exploration of
+agent communication and ontologies exciting, which I plan to learn more
+about.</p>
+<h1 id="working-together">Working Together</h1>
+<p>In week six, we focused on the practical aspect of KQML.
+Unsurprisingly, it appeared to have a declarative LISP style, providing
+solid opportunities to structure messages. However, I have found it too
+high level, without practical meaning to what we call modern systems.
+KQML provides a simple model for understanding agent communication, but
+I can’t imagine actual distributed systems which will gain some
+advantages from implementing ACL as a high-level protocol description.
+It rather fits classic multi-agent systems, which are built around
+meaningful knowledge exchange.</p>
+<p>During another part of the week, we spent our time completing our
+assignment. Early on, we faced the challenge of dealing with different
+time zones among group members. However, despite the initial struggles,
+we managed to find a way to achieve at least one hour of daily group
+communication later on.</p>
+<p>Instead of adopting a sophisticated Software Development Life Cycle
+(SDLC) with its potential overheads, we opted for a straightforward and
+simple workflow. Each team member focused on their respective strengths,
+allowing us to leverage everyone’s expertise effectively. Additionally,
+every participant was encouraged to share their ideas regarding the
+multi-agent system architecture based on their understanding of the
+subject.</p>
+<p>Ultimately, we collectively decided to concentrate on a single-agent
+architecture, which could serve as a foundation for building a
+multi-agent system in the future. Working together as a team has been a
+rewarding experience, and we are looking forward to exploring the
+possibilities further.</p>
+<p>We decided to use a simple Agent design consisting of 3 parts:
+sensors, an analysis module, actuator. All agents should have the same
+basic class, which implements abstract interaction between these three
+modules. Particular agent realisation should have a basic agent class
+and custom implementation for each module. This later could be used to
+implement a dependency injection pattern, which allows flexible
+implementation of the system, when different specialists could focus on
+developing functionality, they are experienced at. I see this approach
+as a good choice for systems which demand effective collaboration of AI
+specialists and experienced software engineers.</p>
+<p>For our first version, we created a simple playground which consisted
+of one Agent whose responsibility was to read the environment, get DNA
+sample requests, match them to the database and create a notification if
+the sample was found. Nevertheless, the design was simple, and we spent
+some time to make it work properly. A test playground was created to
+demonstrate that our model worked properly.</p>
+<p>Personally, I enjoyed this assignment because it is what I like about
+software engineering: designing and building PoCs. My teammates were
+also excited we got such good results. Nevertheless, I had some
+unfavourable circumstances and was stressed by situations not related to
+my studies and lost time to make practical tasks for the e-portfolio,
+the group was so supportive and nice, I managed to focus on my part of
+the job and hit the deadlines. It was another reminder that supportive
+teams perform much better under any circumstances, sometimes showing the
+result that beats expectations. I was glad to have such nice students in
+my group.</p>
+<h1 id="natural-language-processing-nlp">Natural Language Processing
+(NLP)</h1>
+<p>Unit 7 brought another exciting theme. It is nearly impossible to
+imagine a modern world without language translators, voice recognition,
+and now without ChatGPT. Both the lecturecast and reading list provided
+sufficient detail to understand the basics. However, before the course,
+I thought NLP was a less complex subject. The literature revealed how
+wide and universal this area. However, it also revealed many complex
+ethical and philosophical problems, which are somehow inevitable when we
+work with phrases, meanings and interpretations. I enjoyed to deep down
+into the technical aspects of NLP but was puzzled by some state of
+frustration when it came to deeper analysis of language structure.</p>
+<p>Also, this week we finished our collaborative discussions regarding
+agents’ communication in multi-agent systems.</p>
+<p>Multi-agent systems have become increasingly prevalent in various
+domains, ranging from robotics and automation to social networks and
+smart cities. As the complexity of these systems grows, the need for
+effective communication and coordination among agents becomes crucial.
+Agent Communication Language (ACL) is a powerful tool that facilitates
+interaction and collaboration among agents, enabling them to work
+together towards a common goal. ACL could be considered a high-level
+language which provides suitable tools for transferring knowledge in
+multi-agent systems (Finin et al. 1993). All advantages and
+disadvantages of ACLs are mainly related to the application area and
+system size. For small multi-agent systems, ACLs may be more profitable.
+Complex multi-agent systems could have a massive array of data with
+complicated structures and agents which works with different ontologies.
+The wider the distribution of the multi-agent system, the more
+complicated messaging among agents could become. The difference in
+knowledge that agents operate may require significant efforts to align
+ontologies, which may cause further complexity raise. Large systems
+could potentially have the same problems that any extensive distribution
+system has, such as connection problems, queue management complexity,
+data fragmentation and accessibility (Twardowski et al., 2014).</p>
+<p>However, researchers already provide experimental frameworks which
+allow the implementation of ACLs solution atop of systems, which resolve
+mentioned problems. For example, Multi-Agent Framework (Kawamura et
+al. 2005) allows implementing agents’ communication in multi-agent
+systems using XML-RPC for messaging. Furthermore, the Domain-Driven
+Design approach may help with dividing such systems into layers, where
+each layer represents a realisation of different elements (Steinegger,
+2017). For example, ACL may be isolated on the top domain level, while
+protocol communication, data representation, and parallel computations
+could be done by low-level code. Such an approach could decrease the
+potential complexity of the Agent’s implementation for knowledge domain
+specialists while providing flexibility and performance for agent
+communication.</p>
+<p>Overall, I enjoyed the discussions and was impressed by how modern
+technologies empower agent-based systems.</p>
+<h1 id="understanding-natural-language-processing-nlp">Understanding
+Natural Language Processing (NLP)</h1>
+<p>In unit 8, we deepened down into NLP and learned about Word2Vec. I
+believe this unit has changed my sceptical attitude towards NLP theory
+because of a more practical approach which links the theory to
+particular structures and ideas.</p>
+<p>Parse trees task link</p>
+<h1 id="introduction-to-adaptive-algorithms">Introduction to Adaptive
+Algorithms</h1>
+<p>In unit 9, we looked into adaptive algorithms and ANNs particularly.
+Lecturecast and literature provided plenty of interesting information.
+In addition to the knowledge gained during the “Machine Learning”
+module, I believe in getting a deep enough understanding of the basic
+concepts and problems of ANNs. Unfortunately, the time of
+superintelligence didn’t come yet, and will not come for future decades.
+Today’s marketing wars in an attempt to bring investments push society’s
+opinion towards the illusion that AI is close to surpassing human
+limits, providing more discussions on ethics and containment of AI,
+while the industry can’t even create cheap and precise solutions for
+image object recognition. While doing an assignment for another module,
+I was surprised by the amount of preparation, EDA, and applying image
+preprocessing filters to just recognise pictures with a precision close
+to 0.7. This unit definitely added some frustration, not about materials
+quality, but about the state of the industry at all. It’s still far from
+achieving significant results in competing with humans.</p>
+<h1 id="deep-learning-in-action">Deep Learning in Action</h1>
+<p>During week 10, our focus shifted to the practical aspects of deep
+learning applications. While AI still can’t fully compete with humans in
+certain domains, machine learning algorithms have the potential to
+surpass human limitations in specific tasks. For instance, though ML
+models may not yet achieve the same precision as humans in object
+recognition, they excel in recognising objects faster and over extended
+periods with less effort. Industries that don’t necessarily require
+absolute precision can benefit from using deep learning models, as they
+offer profitable solutions. It’s important to note that AI is not meant
+to replace humans but rather to empower them. By taking on tasks that
+demand rapid context changes, making multiple choices, or handling
+repetitive actions, AI can complement human abilities. For example,
+projects like Gitlab Copilot cannot replace software engineers, but they
+can certainly enhance a developer’s performance by providing useful
+assistance. Similarly, while ChatGPT may not solve complex problems
+outright for students, it offers structured information that can
+expedite the process of developing comprehensive solutions. In my
+opinion, supporting deep learning research and solutions is a positive
+step forward, as it equips us better to tackle future challenges.
+Embracing AI technology wisely can lead to a more efficient and
+productive world where humanity will be prepared for future challenges
+much better.</p>
+<h1 id="intelligent-agents-in-action">Intelligent Agents in Action</h1>
+<p>During week 11, we explored Industry 4.0 and other applications of
+Agent-based technologies and deep learning. AI technologies may
+significantly improve manufacturing and, I believe, should replace
+convenient old lines. Automatisation isn’t going to decrease workplaces,
+and rather, it will improve manufacturing, making it more effective and
+safe, decreasing pricing, and providing decent quality. People may focus
+more on sophisticated jobs, spending more time resolving interesting
+problems. In my opinion, Industry 4.0 is a step toward fully automated
+manufacturing, which could be moved to space, allowing people to explore
+planets of the Solar system and moving potentially dangerous
+technologies out of Earth. I am really exited about Industry 4.0 concept
+and its challenges. This is a possible area I want to work in. I
+absolutely support using of AI also in the financial area, which is my
+native industry I spent so much time in. This area is overly regulated
+by policies, and any financial operation could be delayed for weeks for
+a simple AML check, which could be done by the Agent-based system in
+seconds.</p>
+<p>Also, we spent this week finishing our second assignment. This time
+our team showed even better performance. We used the same workflow,
+where everyone, who had time, took a part in the planned work regarding
+their experience. However, this time, we focused more on all aspects of
+the assignment. Everyone participated in creating the programme design
+and selecting patterns. Also, all team members participated in the
+presentation recording. We used the same universal agent design but
+added more agents and developed communication-based on custom format ACL
+messages. Also, new structure were provided, where all entities were
+separated into different libraries. For testing, we decided to avoid
+network communication because it could potentially add complexity to
+realisation yet barely represent ideas we designed to implement. So, a
+single script where all agents and environments are being initialised
+was proposed. We decided to make communication through the custom queue
+manager, which was represented by the Singleton pattern. It allowed
+creating of designs close to real commercial systems, where all services
+communicate through the queues, supported by industry-grade programs
+like RabbitMQ. Also, shared contained can be easily updated to simulate
+network behaviour like delays, disconnects, etc., so the system may be
+further improved to meet requirements for distributed multi-agent
+architecture.</p>
+<p>I admire our group because everyone did their best to have a great
+result. We have managed to improve our solution in regards to the good
+feedback provided to the first assignment. The only thing, which was my
+responsibility, had flaws. However, other aspects of the project were
+improved. I was glad to participate in this simple but interesting
+project.</p>
+<h1 id="the-future-of-intelligent-agents">The Future of Intelligent
+Agents</h1>
+<p>In Unit 12, we explored the future of agent-based deep learning
+technologies. I’m hopeful that this field will progress at an
+accelerated pace. Present-day solutions have achieved remarkable
+effectivity through the combination of well-known but relatively old
+algorithms like ANNs, alongside the utilisation of vast computational
+resources from Big Data and Cloud technologies. While this has yielded
+significant advancements, the future expects us to focus on
+energy-efficient and eco-friendly technologies.</p>
+<p>As researchers, our attention should be directed towards exploring
+novel approaches and modifying existing ones. The goal is to make AI
+solutions more accessible and applicable in all aspects of our daily
+lives. This requires a concerted effort to achieve a balance between
+performance and effectiveness.</p>
+<h2 id="references">References</h2>
+<p>Alfonseca, M., Cebrian, M., Anta, A.F., Coviello, L., Abeliuk, A.,
+Iyad, R. (2021) Superintelligence Cannot be Contained: Lessons from
+Computability Theory. https://doi.org/10.1613/jair.1.12202 [Accessed 4
+July 2023]</p>
+<p>Finin, T., Weber, J., Wiederhold, G., Genesereth, M., Fritzson, R.,
+McKay, D., McGuire, J., Pelavin, R., Shapiro, S. and Beck, C., (1993).
+Specification of the KQML agent-communication. Darpa Knowledge Sharing
+Effort.</p>
+<p>Kawamura.T., Motomura.S., Sugahara. K.(2005) Implementation of a
+logic-based multi-agent framework on Java environment, International
+Conference on Integration of Knowledge Intensive Multi-Agent Systems.,
+Waltham, MA, USA, 2005, pp. 486-491, doi:
+10.1109/KIMAS.2005.1427130.</p>
+<p>Payne, T.R. &amp; Tamma, V. (2014) Negotiating over ontological
+correspondences with asymmetric and incomplete knowledge. AAMAS 13(1):
+517-524.</p>
+<p>Russell, S. &amp; Norvig, P. (2021) Artificial Intelligence: A Modern
+Approach. Harlow: Pearson Education.</p>
+<p>Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of
+Language. Cambridge: Cambridge University Press.</p>
+<p>Steinegger, R., Giessler, P., Hippchen, B., Abeck, S. (2017).
+Overview of a Domain-Driven Design Approach to Build Microservice-Based
+Applications. Available from:
+https://www.researchgate.net/publication/316492773_Overview_of_a_Domain-Driven_Design_Approach_to_Build_Microservice-Based_Applications
+[Accessed 26 June 2023]</p>
+<p>Twardowski. B., Ryzko. D.(2014) Multi-agent Architecture for
+Real-Time Big Data Processing, IEEE/WIC/ACM International Joint
+Conferences on Web Intelligence (WI) and Intelligent Agent Technologies
+(IAT), Warsaw, Poland, 2014, pp. 333-337, doi:
+10.1109/WI-IAT.2014.185.</p>
+<p>vcell.org, (2023) The Virtual Cell. Available from:
+https://vcell.org/why-vcell#Geometry [Accessed 19 Jun 2023].</p>
+<p>Wooldridge, M. J. (2009) An introduction to multiagent systems. (2nd
+ed). New York: John Wiley &amp; Sons.</p>
+</body>
+</html>
